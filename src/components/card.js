@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const Card = props => {
   const { name, summary, id, startDate, endDate } = props.hackathon;
   const {
@@ -10,6 +10,7 @@ const Card = props => {
     dateTextStyle
   } = styles;
   const imgSrc = `/images/${id}.png`;
+  const linkSrc = `/hackathon/${id}`;
   return (
     <div style={cardStyle} className="card">
       <img className="card-img-top" src={imgSrc} alt="Card image cap" />
@@ -26,9 +27,11 @@ const Card = props => {
         <p style={dateTextStyle} className="card-text">
           ENDS ON : {endDate}
         </p>
-        <button style={buttonStyle} className="btn btn-primary">
-          VIEW DETAILS
-        </button>
+        <Link to={linkSrc}>
+          <button style={buttonStyle} className="btn btn-primary">
+            VIEW DETAILS
+          </button>
+        </Link>
       </div>
     </div>
   );

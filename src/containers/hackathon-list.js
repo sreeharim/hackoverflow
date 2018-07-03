@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import Card from "../components/card";
+import PropTypes from "prop-types";
 
 class HackathonList extends Component {
   renderList() {
