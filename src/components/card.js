@@ -38,7 +38,9 @@ const styles = {
   cardStyle: {
     textAlign: "center",
     boxShadow: "5px 10px 5px grey",
-    width: 280
+    width: "280 !important",
+    marginRight: 20,
+    marginTop: 10
   },
   cardTitleStyle: {
     marginTop: 20,

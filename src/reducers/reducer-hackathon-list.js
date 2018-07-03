@@ -24,7 +24,7 @@ export default function(state, action) {
       name: "Testathon",
       summary: "Test your testing skills",
       coductedBy: "NT",
-      active: true,
+      active: false,
       startDate: "07/07/2018",
       endDate: "10/07/2018"
     },
@@ -34,7 +34,7 @@ export default function(state, action) {
       name: "Spring Boot Hackathon",
       summary: "Develop spring boot micro services",
       coductedBy: "NT",
-      active: true,
+      active: false,
       startDate: "01/10/2018",
       endDate: "03/10/2018"
     },
@@ -43,7 +43,7 @@ export default function(state, action) {
       name: "Speedathon",
       summary: "Code with Speed and Efficieny",
       coductedBy: "CMB",
-      active: true,
+      active: false,
       startDate: "15/02/2018",
       endDate: "16/02/2018"
     }
