@@ -1,12 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const { headerStyle, logoStyle } = styles;
   return (
     <div style={headerStyle}>
-      <span style={logoStyle}>
-        <img src="../images/logo_small.png" />
-      </span>
+      <Link to="/">
+        <span style={logoStyle}>
+          <img src="../images/logo_small.png" />
+        </span>
+      </Link>
     </div>
   );
 };
