@@ -42,6 +42,7 @@ const styles = {
     textAlign: "center",
     boxShadow: "5px 10px 5px grey",
     width: "280 !important",
+
     marginRight: 20,
     marginTop: 10
   },
@@ -65,7 +66,7 @@ const styles = {
   buttonStyle: {
     fontFamily: "sans-serif",
     fontWeight: "bold",
-    margin: 20,
+    margin: 10,
     backgroundColor: "#9c0",
     borderColor: "#9c0",
     fontSize: 14

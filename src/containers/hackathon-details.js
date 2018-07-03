@@ -4,6 +4,7 @@ import NavItem from "../components/nav-item";
 import TabPane from "../components/tab-pane";
 import LeaderBoard from "../components/leader-board";
 import Contact from "../components/contact";
+import Header from "../components/header";
 
 class HackathonDetails extends Component {
   renderRules(rules) {
@@ -21,24 +22,27 @@ class HackathonDetails extends Component {
     const { rules, contact, leaderBoard } = this.props.hackathon;
 
     return (
-      <div style={hackathondetailstyle}>
-        <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-          <NavItem tag="details" active={true}>
-            Rules & Details
-          </NavItem>
-          <NavItem tag="leaderboard">Leaderboard</NavItem>
-          <NavItem tag="contact">Contact</NavItem>
-        </ul>
-        <div className="tab-content" id="pills-tabContent">
-          <TabPane tag="details" active={true} style={ruleStyle}>
-            {this.renderRules(rules)}
-          </TabPane>
-          <TabPane tag="leaderboard">
-            <LeaderBoard data={leaderBoard} />
-          </TabPane>
-          <TabPane tag="contact" style={ruleStyle}>
-            {this.renderContact(contact)}
-          </TabPane>
+      <div>
+        <Header />
+        <div style={hackathondetailstyle}>
+          <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <NavItem tag="details" active={true}>
+              Rules & Details
+            </NavItem>
+            <NavItem tag="leaderboard">Leaderboard</NavItem>
+            <NavItem tag="contact">Contact</NavItem>
+          </ul>
+          <div className="tab-content" id="pills-tabContent">
+            <TabPane tag="details" active={true} style={ruleStyle}>
+              {this.renderRules(rules)}
+            </TabPane>
+            <TabPane tag="leaderboard">
+              <LeaderBoard data={leaderBoard} />
+            </TabPane>
+            <TabPane tag="contact" style={ruleStyle}>
+              {this.renderContact(contact)}
+            </TabPane>
+          </div>
         </div>
       </div>
     );
@@ -46,7 +50,7 @@ class HackathonDetails extends Component {
 }
 const styles = {
   hackathondetailstyle: {
-    margin: 50
+    margin: 80
   },
   ruleStyle: {
     fontFamily: "initial",
