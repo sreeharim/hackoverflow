@@ -1,6 +1,6 @@
 import React from "react";
 
-const TabPane = ({ children, tag, active }) => {
+const TabPane = ({ children, tag, active, style }) => {
   const id = `pills-${tag}`;
   const ariaLabel = `pills-${tag}-tab`;
   const classes = `tab-pane fade ${active ? "active show" : ""}`;
@@ -9,6 +9,7 @@ const TabPane = ({ children, tag, active }) => {
       className={classes}
       id={id}
       role="tabpanel"
+      style={style}
       aria-labelledby={ariaLabel}
     >
       {children}

@@ -4,3 +4,11 @@ body {
   font-family: sans-serif;
   background-color: #f3f3f3;
 }
+a {
+  color: #9e9595;
+}
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: #9c0;
+  color: white;
+}

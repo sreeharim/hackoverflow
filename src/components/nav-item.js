@@ -6,6 +6,7 @@ const NavItem = ({ tag, children, active }) => {
   const hrefLink = `#pills-${tag}`;
   const ariaControls = `pills-${tag}`;
   const isSelected = active ? "true" : "false";
+  const { textStyle } = styles;
   return (
     <li className="nav-item">
       <a
@@ -14,6 +15,7 @@ const NavItem = ({ tag, children, active }) => {
         data-toggle="pill"
         href={hrefLink}
         role="tab"
+        style={textStyle}
         aria-controls={ariaControls}
         aria-selected={isSelected}
       >
@@ -22,5 +24,9 @@ const NavItem = ({ tag, children, active }) => {
     </li>
   );
 };
-
+const styles = {
+  textStyle: {
+    fontFamily: "cursive"
+  }
+};
 export default NavItem;
