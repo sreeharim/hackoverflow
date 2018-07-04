@@ -4,6 +4,7 @@ const ROOT_URL = "http://localhost:3001";
 
 export const FETCH_ALL_HACKATHONS = "FETCH_ALL_HACKATHONS";
 export const GET_HACKATHON_DETAILS = "GET_HACKATHON_DETAILS";
+export const USER_LOGIN = "USER_LOGIN";
 
 export function fetchAllHackathons() {
   const url = `${ROOT_URL}/hackathons`;
@@ -20,6 +21,15 @@ export function getHackathon(id) {
   const request = axios.get(url);
   return {
     type: GET_HACKATHON_DETAILS,
+    payload: request
+  };
+}
+export function loginUser(username, password) {
+  const url = `${ROOT_URL}/userlogin`;
+  const params = { username, password };
+  const request = axios.post(url, params);
+  return {
+    type: USER_LOGIN,
     payload: request
   };
 }

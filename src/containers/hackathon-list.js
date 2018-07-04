@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchAllHackathons, getHackathon } from "../actions/index";
 import Card from "../components/card";
+import { Redirect } from "react-router-dom";
 
 class HackathonList extends Component {
   constructor(props) {
@@ -29,6 +30,7 @@ class HackathonList extends Component {
   }
   render() {
     const { hackathonlistStyle } = styles;
+    if (!this.props.loginDetails.isLoggedIn) return <Redirect to="/login" />;
     return (
       <div className="row" style={hackathonlistStyle}>
         {this.renderList()}
@@ -45,7 +47,8 @@ const styles = {
 };
 function mapStateToProps(state) {
   return {
-    hackathons: state.hackathons
+    hackathons: state.hackathons,
+    loginDetails: state.loginDetails
   };
 }
 function mapDispatchtoProps(dispatch) {

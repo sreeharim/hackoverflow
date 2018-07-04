@@ -7,6 +7,7 @@ import Contact from "../components/contact";
 import Header from "../components/header";
 import NotFound from "../components/not-found";
 import SubHeading from "../components/sub-heading";
+import { Redirect } from "react-router-dom";
 
 class HackathonDetails extends Component {
   renderRules(rules) {
@@ -24,6 +25,7 @@ class HackathonDetails extends Component {
   render() {
     const { hackathondetailstyle, ruleStyle } = styles;
     const { rules, contact, leaderBoard, name } = this.props.hackathon;
+    if (!this.props.loginDetails.isLoggedIn) return <Redirect to="/login" />;
     if (rules)
       return (
         <div>
@@ -51,7 +53,9 @@ class HackathonDetails extends Component {
           </div>
         </div>
       );
-    else return <NotFound />;
+    else {
+      return <NotFound />;
+    }
   }
 }
 const styles = {
@@ -69,7 +73,8 @@ const styles = {
 function mapStateToProps(state) {
   // console.log(`state ${JSON.stringify(state.hackathonDetail)}`);
   return {
-    hackathon: state.hackathonDetail
+    hackathon: state.hackathonDetail,
+    loginDetails: state.loginDetails
   };
 }
 

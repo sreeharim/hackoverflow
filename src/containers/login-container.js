@@ -1,8 +1,17 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { loginUser } from "../actions/index";
 import $ from "jquery";
 import LoginForm from "../components/login-form";
 import RegisterForm from "../components/register-form";
+import history from "../components/history";
+import { Redirect } from "react-router-dom";
 class LoginContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.handleLoginClick = this.handleLoginClick.bind(this);
+  }
   handleClick(e, val) {
     if (val == "login") {
       $("#login-form")
@@ -22,6 +31,10 @@ class LoginContainer extends Component {
       e.preventDefault();
     }
   }
+  handleLoginClick(username, password) {
+    console.log("Recieved uname :" + username + " password: " + password);
+    this.props.loginUser(username, password);
+  }
   render() {
     const {
       loginHeadingStyle,
@@ -29,7 +42,7 @@ class LoginContainer extends Component {
       panelStyle,
       containerStyle
     } = styles;
-
+    if (this.props.loginDetails.isLoggedIn) return <Redirect to="/" />;
     return (
       <div className="container" style={containerStyle}>
         <div className="row">
@@ -62,7 +75,7 @@ class LoginContainer extends Component {
               <div className="panel-body">
                 <div className="row">
                   <div className="col-lg-12">
-                    <LoginForm />
+                    <LoginForm handleLoginClick={this.handleLoginClick} />
                     <RegisterForm />
                   </div>
                 </div>
@@ -89,7 +102,20 @@ const styles = {
     padding: 10
   },
   panelStyle: {
-    background: "white"
+    background: "white",
+    boxShadow: "5px 5px 10px grey"
   }
 };
-export default LoginContainer;
+function mapStateToProps(state) {
+  //  console.log("Login Details" + JSON.stringify(state.loginDetails));
+  return {
+    loginDetails: state.loginDetails
+  };
+}
+function mapDispatchtoProps(dispatch) {
+  return bindActionCreators({ loginUser }, dispatch);
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchtoProps
+)(LoginContainer);
