@@ -1,4 +1,4 @@
-import { USER_LOGIN } from "../actions/index";
+import { USER_LOGIN, USER_LOGOUT } from "../actions/index";
 
 export default function(state = [], action) {
   switch (action.type) {
@@ -6,6 +6,8 @@ export default function(state = [], action) {
       if (action.payload.data && action.payload.data._id)
         return { isLoggedIn: true, ...action.payload.data };
       return { isLoggedIn: false, ...action.payload.data };
+    case USER_LOGOUT:
+      return { isLoggedIn: false };
   }
   return state;
 }

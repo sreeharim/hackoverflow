@@ -8,6 +8,8 @@ import Header from "../components/header";
 import NotFound from "../components/not-found";
 import SubHeading from "../components/sub-heading";
 import { Redirect } from "react-router-dom";
+import { bindActionCreators } from "redux";
+import { logoutUser } from "../actions/index";
 
 class HackathonDetails extends Component {
   renderRules(rules) {
@@ -29,7 +31,7 @@ class HackathonDetails extends Component {
     if (rules)
       return (
         <div>
-          <Header />
+          <Header logOut={this.props.logoutUser} />
           <div style={hackathondetailstyle}>
             <SubHeading text={name} />
             <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -77,5 +79,10 @@ function mapStateToProps(state) {
     loginDetails: state.loginDetails
   };
 }
-
-export default connect(mapStateToProps)(HackathonDetails);
+function mapDispatchtoProps(dispatch) {
+  return bindActionCreators({ logoutUser }, dispatch);
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchtoProps
+)(HackathonDetails);

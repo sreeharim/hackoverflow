@@ -1,17 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import DropDown from "./dropdown";
-const renderSettings = noSettings => {
+const renderSettings = (noSettings, logOut) => {
   const { dropDownStyle } = styles;
   if (!noSettings)
     return (
       <span>
-        <DropDown style={dropDownStyle} />
+        <DropDown style={dropDownStyle} logOut={logOut} />
       </span>
     );
   return null;
 };
-const Header = ({ noSettings }) => {
+const Header = ({ noSettings, logOut }) => {
   const { headerStyle, logoStyle } = styles;
   return (
     <div style={headerStyle}>
@@ -20,7 +20,7 @@ const Header = ({ noSettings }) => {
           <img src="../images/logo_small.png" />
         </span>
       </Link>
-      {renderSettings(noSettings)}
+      {renderSettings(noSettings, logOut)}
     </div>
   );
 };

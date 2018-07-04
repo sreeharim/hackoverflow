@@ -17,7 +17,11 @@ const getTableRows = data => {
         <td>{hacker.rank}</td>
         <td>{hacker.name}</td>
         <td>{hacker.score}</td>
-        <td>Git</td>
+        <td>
+          <a href={hacker.source} target="_blank">
+            <i class="fa fa-github fa-lg" />
+          </a>
+        </td>
       </tr>
     );
   });

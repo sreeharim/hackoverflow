@@ -1,6 +1,6 @@
 import React from "react";
 
-const DropDown = ({ style }) => {
+const DropDown = ({ style, logOut }) => {
   return (
     <div className="dropdown" style={style}>
       <button
@@ -17,7 +17,7 @@ const DropDown = ({ style }) => {
         <a className="dropdown-item" href="#">
           Profile
         </a>
-        <a className="dropdown-item" href="#">
+        <a className="dropdown-item" href="#" onClick={() => logOut()}>
           Log Out
         </a>
       </div>
