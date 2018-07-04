@@ -1,7 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-const Header = () => {
+import DropDown from "./dropdown";
+const renderSettings = noSettings => {
+  const { dropDownStyle } = styles;
+  if (!noSettings)
+    return (
+      <span>
+        <DropDown style={dropDownStyle} />
+      </span>
+    );
+  return null;
+};
+const Header = ({ noSettings }) => {
   const { headerStyle, logoStyle } = styles;
   return (
     <div style={headerStyle}>
@@ -10,6 +20,7 @@ const Header = () => {
           <img src="../images/logo_small.png" />
         </span>
       </Link>
+      {renderSettings(noSettings)}
     </div>
   );
 };
@@ -25,6 +36,11 @@ const styles = {
   },
   logoStyle: {
     marginLeft: 50
+  },
+  dropDownStyle: {
+    position: "fixed",
+    right: 15,
+    marginTop: -44
   }
 };
 

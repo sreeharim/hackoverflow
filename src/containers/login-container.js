@@ -47,7 +47,7 @@ class LoginContainer extends Component {
     if (isLoggedIn) return <Redirect to="/" />;
     return (
       <div>
-        <Header />
+        <Header noSettings={true} />
         <div className="container" style={containerStyle}>
           <div className="row">
             <div className="col-md-6 col-md-offset-3">
