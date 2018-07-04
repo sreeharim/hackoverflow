@@ -5,8 +5,9 @@ import { loginUser } from "../actions/index";
 import $ from "jquery";
 import LoginForm from "../components/login-form";
 import RegisterForm from "../components/register-form";
-import history from "../components/history";
 import { Redirect } from "react-router-dom";
+import Header from "../components/header";
+
 class LoginContainer extends Component {
   constructor(props) {
     super(props);
@@ -36,47 +37,54 @@ class LoginContainer extends Component {
     this.props.loginUser(username, password);
   }
   render() {
+    const { isLoggedIn } = this.props.loginDetails;
     const {
       loginHeadingStyle,
       registerHeadingStyle,
       panelStyle,
       containerStyle
     } = styles;
-    if (this.props.loginDetails.isLoggedIn) return <Redirect to="/" />;
+    if (isLoggedIn) return <Redirect to="/" />;
     return (
-      <div className="container" style={containerStyle}>
-        <div className="row">
-          <div className="col-md-6 col-md-offset-3">
-            <div className="panel panel-login" style={panelStyle}>
-              <div className="panel-heading">
-                <div className="row">
-                  <div className="col-xs-6" style={loginHeadingStyle}>
-                    <a
-                      href="#"
-                      className="active"
-                      id="login-form-link"
-                      onClick={e => this.handleClick(e, "login")}
-                    >
-                      Login
-                    </a>
+      <div>
+        <Header />
+        <div className="container" style={containerStyle}>
+          <div className="row">
+            <div className="col-md-6 col-md-offset-3">
+              <div className="panel panel-login" style={panelStyle}>
+                <div className="panel-heading">
+                  <div className="row">
+                    <div className="col-xs-6" style={loginHeadingStyle}>
+                      <a
+                        href="#"
+                        className="active"
+                        id="login-form-link"
+                        onClick={e => this.handleClick(e, "login")}
+                      >
+                        Login
+                      </a>
+                    </div>
+                    <div className="col-xs-6" style={registerHeadingStyle}>
+                      <a
+                        href="#"
+                        id="register-form-link"
+                        onClick={e => this.handleClick(e, "register")}
+                      >
+                        Register
+                      </a>
+                    </div>
                   </div>
-                  <div className="col-xs-6" style={registerHeadingStyle}>
-                    <a
-                      href="#"
-                      id="register-form-link"
-                      onClick={e => this.handleClick(e, "register")}
-                    >
-                      Register
-                    </a>
-                  </div>
+                  <hr />
                 </div>
-                <hr />
-              </div>
-              <div className="panel-body">
-                <div className="row">
-                  <div className="col-lg-12">
-                    <LoginForm handleLoginClick={this.handleLoginClick} />
-                    <RegisterForm />
+                <div className="panel-body">
+                  <div className="row">
+                    <div className="col-lg-12">
+                      <LoginForm
+                        handleLoginClick={this.handleLoginClick}
+                        isLoggedIn={isLoggedIn}
+                      />
+                      <RegisterForm />
+                    </div>
                   </div>
                 </div>
               </div>

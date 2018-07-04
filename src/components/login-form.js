@@ -7,7 +7,10 @@ class LoginForm extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    this.props.handleLoginClick(this.state.username, this.state.password);
+    if (this.state.username != "" && this.state.password != "")
+      this.props.handleLoginClick(this.state.username, this.state.password);
+    const newState = { username: "", password: "" };
+    this.setState(newState);
   }
   handleUserChange(e) {
     const newState = { username: e.target.value };
@@ -16,6 +19,22 @@ class LoginForm extends Component {
   handlePasswordChange(e) {
     const newState = { password: e.target.value };
     this.setState(newState);
+  }
+  renderError() {
+    const { errorStyle } = styles;
+    if (this.props.isLoggedIn == false)
+      return (
+        <div className="form-group" style={errorStyle}>
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="text-center">Invaild credentails. Try Again</div>
+            </div>
+          </div>
+        </div>
+      );
+    else {
+      return null;
+    }
   }
   render() {
     const { inputBoxStyle, buttonStyle } = styles;
@@ -51,7 +70,7 @@ class LoginForm extends Component {
             value={this.state.password}
           />
         </div>
-
+        {this.renderError()}
         <div className="form-group">
           <div className="row">
             <div className="col-sm-6 col-sm-offset-3" style={buttonStyle}>
@@ -70,11 +89,7 @@ class LoginForm extends Component {
           <div className="row">
             <div className="col-lg-12">
               <div className="text-center">
-                <a
-                  href="https://phpoll.com/recover"
-                  tabIndex="5"
-                  className="forgot-password"
-                >
+                <a href="#" tabIndex="5" className="forgot-password">
                   Forgot Password?
                 </a>
               </div>
@@ -91,6 +106,10 @@ const styles = {
   },
   buttonStyle: {
     left: "24%"
+  },
+  errorStyle: {
+    fontFamily: "monospace",
+    color: "red"
   }
 };
 export default LoginForm;
