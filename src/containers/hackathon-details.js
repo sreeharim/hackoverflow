@@ -5,47 +5,53 @@ import TabPane from "../components/tab-pane";
 import LeaderBoard from "../components/leader-board";
 import Contact from "../components/contact";
 import Header from "../components/header";
+import NotFound from "../components/not-found";
+import SubHeading from "../components/sub-heading";
 
 class HackathonDetails extends Component {
   renderRules(rules) {
-    return rules.map((rule, index) => {
-      return <p key={index}>{rule.p}</p>;
-    });
+    if (rules)
+      return rules.map((rule, index) => {
+        return <p key={index}>{rule.p}</p>;
+      });
   }
   renderContact(contact) {
-    return contact.map((ct, index) => {
-      return <Contact key={index} data={ct} />;
-    });
+    if (contact)
+      return contact.map((ct, index) => {
+        return <Contact key={index} data={ct} />;
+      });
   }
   render() {
     const { hackathondetailstyle, ruleStyle } = styles;
-    const { rules, contact, leaderBoard } = this.props.hackathon;
-
-    return (
-      <div>
-        <Header />
-        <div style={hackathondetailstyle}>
-          <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-            <NavItem tag="details" active={true}>
-              Rules & Details
-            </NavItem>
-            <NavItem tag="leaderboard">Leaderboard</NavItem>
-            <NavItem tag="contact">Contact</NavItem>
-          </ul>
-          <div className="tab-content" id="pills-tabContent">
-            <TabPane tag="details" active={true} style={ruleStyle}>
-              {this.renderRules(rules)}
-            </TabPane>
-            <TabPane tag="leaderboard">
-              <LeaderBoard data={leaderBoard} />
-            </TabPane>
-            <TabPane tag="contact" style={ruleStyle}>
-              {this.renderContact(contact)}
-            </TabPane>
+    const { rules, contact, leaderBoard, name } = this.props.hackathon;
+    if (rules)
+      return (
+        <div>
+          <Header />
+          <div style={hackathondetailstyle}>
+            <SubHeading text={name} />
+            <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+              <NavItem tag="details" active={true}>
+                Rules & Details
+              </NavItem>
+              <NavItem tag="leaderboard">Leaderboard</NavItem>
+              <NavItem tag="contact">Contact</NavItem>
+            </ul>
+            <div className="tab-content" id="pills-tabContent">
+              <TabPane tag="details" active={true} style={ruleStyle}>
+                {this.renderRules(rules)}
+              </TabPane>
+              <TabPane tag="leaderboard">
+                <LeaderBoard data={leaderBoard} />
+              </TabPane>
+              <TabPane tag="contact" style={ruleStyle}>
+                {this.renderContact(contact)}
+              </TabPane>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    else return <NotFound />;
   }
 }
 const styles = {
@@ -61,7 +67,7 @@ const styles = {
 };
 
 function mapStateToProps(state) {
-  // console.log(`state ${JSON.stringify(state)}`);
+  // console.log(`state ${JSON.stringify(state.hackathonDetail)}`);
   return {
     hackathon: state.hackathonDetail
   };

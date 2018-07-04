@@ -29,7 +29,11 @@ const Card = props => {
           ENDS ON : {endDate}
         </p>
         <Link to={linkSrc}>
-          <button style={buttonStyle} className="btn btn-primary">
+          <button
+            style={buttonStyle}
+            className="btn btn-primary"
+            onClick={() => props.handleClick(_id)}
+          >
             VIEW DETAILS
           </button>
         </Link>
