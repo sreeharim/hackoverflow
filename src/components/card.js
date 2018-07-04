@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 const Card = props => {
-  const { name, summary, id, startDate, endDate } = props.hackathon;
+  const { name, summary, _id, startDate, endDate } = props.hackathon;
   const {
     cardStyle,
     cardTitleStyle,
@@ -9,8 +9,9 @@ const Card = props => {
     buttonStyle,
     dateTextStyle
   } = styles;
-  const imgSrc = `/images/${id}.png`;
-  const linkSrc = `/hackathon/${id}`;
+  const imgName = name.replace(/\s/g, "").toLowerCase();
+  const imgSrc = `/images/${imgName}.png`;
+  const linkSrc = `/hackathon/${_id}`;
   return (
     <div style={cardStyle} className="card">
       <img className="card-img-top" src={imgSrc} alt="Card image cap" />

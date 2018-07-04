@@ -11,9 +11,9 @@ class App extends Component {
         <Header />
         <div className="main-content">
           <SubHeading text="UPCOMING EVENTS" />
-          <HackathonList active={true} />
+          <HackathonList active="true" />
           <SubHeading text="COMPLETED EVENTS" />
-          <HackathonList active={false} />
+          <HackathonList active="false" />
         </div>
       </div>
     );

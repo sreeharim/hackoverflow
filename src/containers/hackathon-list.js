@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { fetchAllHackathons } from "../actions/index";
 import Card from "../components/card";
 
 class HackathonList extends Component {
@@ -9,7 +11,10 @@ class HackathonList extends Component {
         return <Card key={hackathon.id} hackathon={hackathon} />;
     });
   }
-
+  componentDidMount() {
+    console.log("component mounted");
+    this.props.fetchAllHackathons();
+  }
   render() {
     const { hackathonlistStyle } = styles;
     return (
@@ -31,5 +36,10 @@ function mapStateToProps(state) {
     hackathons: state.hackathons
   };
 }
-
-export default connect(mapStateToProps)(HackathonList);
+function mapDispatchtoProps(dispatch) {
+  return bindActionCreators({ fetchAllHackathons }, dispatch);
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchtoProps
+)(HackathonList);
