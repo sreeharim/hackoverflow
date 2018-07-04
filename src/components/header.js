@@ -40,7 +40,8 @@ const styles = {
   dropDownStyle: {
     position: "fixed",
     right: 15,
-    marginTop: -44
+    marginTop: -44,
+    fontFamily: "cursive"
   }
 };
 
