@@ -7,7 +7,7 @@ export default function(state = [], action) {
         return { isLoggedIn: true, ...action.payload.data };
       return { isLoggedIn: false, ...action.payload.data };
     case USER_LOGOUT:
-      return { isLoggedIn: false };
+      return { isLoggedIn: null };
   }
   return state;
 }
